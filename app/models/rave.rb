@@ -1,0 +1,2 @@
+class Rave < ApplicationRecord
+end
