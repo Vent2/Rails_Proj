@@ -65,6 +65,9 @@ GEM
       msgpack (~> 1.0)
     bootsnap (1.4.6-java)
       msgpack (~> 1.0)
+    bootstrap_form (4.5.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.33.0)
@@ -154,7 +157,6 @@ GEM
     omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
-    parslet (2.0.0)
     public_suffix (4.0.5)
     puma (4.3.5)
       nio4r (~> 2.0)
@@ -232,7 +234,6 @@ GEM
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
     tilt (2.0.10)
-    trollop (2.9.10)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -260,10 +261,6 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yarn (0.1.1)
-      parslet (>= 1.2)
-      rack (>= 1.3)
-      trollop (>= 1.16)
     zeitwerk (2.3.1)
 
 PLATFORMS
@@ -276,6 +273,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
+  bootstrap_form (~> 4.0)
   byebug
   capybara (>= 2.15)
   dotenv-rails
@@ -298,7 +296,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  yarn
 
 RUBY VERSION
    ruby 2.6.1p33

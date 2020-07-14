@@ -1,0 +1,13 @@
+<div>
+  <%= form_with(model: @user, local: true) do |form| %>
+  <%# <%= byebug %>
+    <%= render 'users/form' %><br>
+    <%= form.submit "Sign In" %>
+  <% end %>
+</div><br>
+- or -
+<p>
+  <%= link_to "Sign up!", new_user_path %>
+<p>
+
+<p><%= link_to('Login with Facebook', '/auth/facebook')%></p>

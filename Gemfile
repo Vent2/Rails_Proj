@@ -27,6 +27,7 @@ gem 'omniauth-github'
 gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'dotenv-rails', groups: [:development, :test]
+gem "bootstrap_form", "~> 4.0"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

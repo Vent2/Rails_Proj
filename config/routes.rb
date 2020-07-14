@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  resources :users do
+  resources :users, except: [:index] do
     resources :raves
   end
   resources :artists do
     resources :songs
   end
-    match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]  
+
+  get '/signin', to: 'sessions#new'
+  post '/signin', to: 'sessions#create'
+  delete '/signout', to: 'sessions#destroy'
+
+  get '/auth/facebook/callback', to: 'sessions#create'
+  # , via: [:get, :post]  
     
-    root 'welcome#home' 
+  root 'welcome#home' 
 end

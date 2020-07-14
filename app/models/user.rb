@@ -1,11 +1,13 @@
 class User < ApplicationRecord
-    has_secured_password
-    validates_pressence_of :name, :email, :password_digest
-    validates_uniquness :email
+    
+    has_secure_password
+    
+    validates_presence_of :email, :password
+    validates_uniqueness_of :email
 
-    has_many :raves
-    has_many :artists, through: :raves
-    has_many :songs, through: :artists
+    # has_many :raves
+    # has_many :artists, through: :raves
+    # has_many :songs, through: :artists
 
 
     def self.find_by_or_create_by_omniauth(auth_hash)
