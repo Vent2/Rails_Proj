@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end
 
         def show
-            # require_login
+            require_login
         end
 
         def update

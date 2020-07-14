@@ -16,3 +16,6 @@ class User < ApplicationRecord
         end
     end
 end
+
+
+# BY_OMNIAUTH NOT LOADING IN CONTROLLER?

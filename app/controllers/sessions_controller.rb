@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
     def create
       if auth_hash = request.env['omniauth.auth']
          # raise.auth_hash.inspect
-         user = User.find_or_create_by_omniauth(auth_hash)
+         user = User.find_by_or_create_by_omniauth(auth_hash)
          session[:user_id]  = user.id   
-         redirect_to user_path
+         redirect_to user_path(user)
       else
         user = User.find_by(:email => params[:email])
          if user && user.authenticate(params[:password])
@@ -26,8 +26,10 @@ class SessionsController < ApplicationController
       end
     end
     def destroy
-        reset_session
-        redirect_to root_path
+      session.delete :user_id
+      flash[:message] = "You are logged out"
+  
+      redirect_to root_path
     end
    
     private 
