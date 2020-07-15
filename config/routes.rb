@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resources :users, except: [:index] do
-    resources :raves
-  end
+  resources :users, except: [:index] 
+    # resources :raves
+  # end
   resources :artists do
     resources :songs
   end
 
+  resources :raves
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

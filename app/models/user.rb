@@ -5,9 +5,9 @@ class User < ApplicationRecord
     validates_presence_of :email, :password
     validates_uniqueness_of :email
 
-    # has_many :raves
-    # has_many :artists, through: :raves
-    # has_many :songs, through: :artists
+    has_many :raves
+    has_many :artists, through: :raves
+    has_many :songs, through: :artists
 
 
     def self.find_by_or_create_by_omniauth(auth_hash)
@@ -17,5 +17,3 @@ class User < ApplicationRecord
     end
 end
 
-
-# BY_OMNIAUTH NOT LOADING IN CONTROLLER?

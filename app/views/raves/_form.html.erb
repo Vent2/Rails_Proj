@@ -1,0 +1,22 @@
+<%= form_with(model: @rave) do |f| %>
+
+<div class="field">
+    <%= f.label "Name:" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Price:" %>
+    <%= f.number_field :price %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label "Date:" %>
+    <%= f.date_field :date %>
+  </div><br>
+
+  <div class="action">
+    <%= f.submit %>
+  
+<% end %>
