@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :index, :update, :destroy]
+    before_action :set_user, only: [:show, :index, :edit, :update, :destroy]
     
     def index
     end
@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     def create 
         
         @user = User.new(user_params(:name, :email, :password))
-        # byebug
         if @user.save
+            session[:user_id]  = user.id
             redirect_to user_path(@user)
         else
             flash[:alert] = "Account was not created"
@@ -24,22 +24,20 @@ class UsersController < ApplicationController
             require_login
         end
 
+        def edit
+        end
+         
+
         def update
+            @user.update(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
+            redirect_to user_path(@user)
         end
 
         def destroy
+            @user.delete
+            flash[:alert] = "Account was deleted"
+            redirect_to root_path
         end
-
-
-
-
-
-
-
-
-
-
-
 
     private
     def set_user
