@@ -1,59 +1,68 @@
 class RavesController < ApplicationController
-    before_action :set_user
-    before_action :set_rave
+  before_action :set_rave, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @raves = Rave.all
+  end
 
-    def index
-        @rave = Rave.all
-    end
+ 
+  def show
+    @user = User.find_by(id: params[:user_id])
+  end
+
+  def new
+    @rave = Rave.new
+    @user = User.find_by(id: params[:user_id])
+  end
+
+  def create
+    # if params[:user_id]
+    @rave = Rave.new(rave_params(:name, :price, :date, :user_id))
+    @user = User.find_by(id: params[:user_id])
+    # user = User.find_by(session[:user_id].to_s)
+    # parmas[:user_id] = @rave.user_id
+    if @rave.save
     
-    def new
-        @rave = Rave.new
-        ActionController::Parameters.permit_all_parameters = true
-        # @rave.user_id = @user
+      redirect_to user_rafe_path(@user, @rave)
+    else
+      flash[:message] = "Account was not created"
+      render 'new'
     end
+    # end
+  end
+  
+  def edit
+    @user = User.find_by(id: params[:user_id])
+    @rave.user_id = params[:id]
+  end
 
-    def create
-        # permitted = params.require(:rave).permit(:authenticity_token, :rave, :commit)
-
-        @rave = Rave.new(rave_params(:name, :price, :date, :user_id))
-        user = User.find_by(session[:user_id].to_s)
-        @rave.user_id = user.id
-        # raise."stop".inspect
-        if @rave.save
-            # raise."stop".inspect
-            session[:user_id]  = user.id
-            redirect_to rafe_path(@rave)
-        else
-            flash[:message] = "Account was not created"
-            render 'new'
-        end
+  def update
+    respond_to do |format|
+      if @planet.update(rave_params(:name, :price, :date, :user_id))
+    @user = User.find_by(id: params[:user_id])
+    redirect_to user_rafe_path(@user, @rave)
+      end
     end
+  end
+# @rave.update(name: params[:rave][:name], price: params[:rave][:price], date: params[:rave][:date])
+# raise.params.inspect
 
-    def show
+  # DELETE /raves/1
+  # DELETE /raves/1.json
+  def destroy
+    @rave.destroy
+    @user = User.find_by(id: params[:user_id])
+    redirect_to user_path(@user)
+  end
 
-    end
-    def edit
-    end
-
-    def update
-    end
-
-    def destroy
-    end
-
-    private
-    def set_user
-        @user = User.find_by(id: params[:id])
-    end
-
+  private
+    # Use callbacks to share common setup or constraints between actions.
     def set_rave
-        @rave = Rave.find_by(id: params[:id])
+      @rave = Rave.find(params[:id])
     end
 
+    # Only allow a list of trusted parameters through.
     def rave_params(*args)
-        params.require(:rave).permit(*args)
+      params.require(:rave).permit(*args)
     end
-    
-
 end

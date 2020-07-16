@@ -1,3 +1,19 @@
-<h1><%= @rave.name %></h1>
-<p>Date - <%= @rave.date %></p><br>
-<p>Price:<%= @rave.price %></p><br>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @rave.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @rave.price %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @rave.date %>
+</p>
+
+<%= link_to 'Main Page', user_path(@user) %>
+<%= link_to 'Edit', edit_rafe_path(@rave) %>

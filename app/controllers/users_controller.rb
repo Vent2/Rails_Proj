@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :index, :edit, :update, :destroy]
-    
+    before_action :set_session
+
     def index
     end
 
@@ -21,7 +22,10 @@ class UsersController < ApplicationController
     end
 
         def show
-            require_login
+            # require_login
+            # @rave = Rave.new
+            # session[:user_id] = @rave.user_id
+            @rave = session[:user_id]
         end
 
         def edit
@@ -40,6 +44,11 @@ class UsersController < ApplicationController
         end
 
     private
+
+    def set_session
+        session[:user_id]  = @user.id
+    end
+
     def set_user
         @user = User.find_by(id: params[:id])
     end
