@@ -1,34 +1,38 @@
 class RavesController < ApplicationController
-  before_action :set_rave, only: [:show, :edit, :update, :destroy]
+  before_action :set_rave, only: [:show, :edit, :update]
 
   def index
-    @raves = Rave.all
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      @raves = @user.raves
+    else
+      @raves = Rave.all
+    end
   end
 
  
   def show
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:id])
   end
 
   def new
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+    end
     @rave = Rave.new
-    @user = User.find_by(id: params[:user_id])
   end
 
   def create
-    # if params[:user_id]
     @rave = Rave.new(rave_params(:name, :price, :date, :user_id))
-    @user = User.find_by(id: params[:user_id])
-    # user = User.find_by(session[:user_id].to_s)
-    # parmas[:user_id] = @rave.user_id
+    @user = User.find_by(id: params[:id])
+    
     if @rave.save
     
-      redirect_to user_rafe_path(@user, @rave)
+      redirect_to @rave
     else
       flash[:message] = "Account was not created"
       render 'new'
     end
-    # end
   end
   
   def edit
@@ -37,21 +41,17 @@ class RavesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @planet.update(rave_params(:name, :price, :date, :user_id))
-    @user = User.find_by(id: params[:user_id])
-    redirect_to user_rafe_path(@user, @rave)
+    # respond_to do |format|
+      if @rave.update(rave_params(:name, :price, :date, :user_id))
+    # @user = User.find_by(id: params[:user_id])
+    redirect_to @rave
       end
-    end
   end
-# @rave.update(name: params[:rave][:name], price: params[:rave][:price], date: params[:rave][:date])
-# raise.params.inspect
 
-  # DELETE /raves/1
-  # DELETE /raves/1.json
   def destroy
-    @rave.destroy
-    @user = User.find_by(id: params[:user_id])
+    @rave = Rave.find_by(id: params[:id])
+    @rave.delete
+    @user = User.find_by(id: params[:id])
     redirect_to user_path(@user)
   end
 

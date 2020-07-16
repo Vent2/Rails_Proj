@@ -1,4 +1,10 @@
-<h1> Hello <%= @user.name %></h1>
+<h1> Hello <%= @user.name %></h1><br>
+
+<ul>
+        <% @raves.each do |r| %>
+            <li><%= link_to r.name, rafe_path %></li>
+        <% end %>
+</ul>
 <p><%= link_to "Add a Rave",  new_user_rafe_path(@user) %></p>
 <%= link_to "Edit", edit_user_path %><br>
 <%= link_to("Log Out", logout_path) %>

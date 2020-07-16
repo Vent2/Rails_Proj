@@ -22,10 +22,12 @@ class UsersController < ApplicationController
     end
 
         def show
-            # require_login
-            # @rave = Rave.new
-            # session[:user_id] = @rave.user_id
-            @rave = session[:user_id]
+            if params[:user_id]
+                @user = User.find_by(id: params[:user_id])
+                @raves = @user.raves
+            else
+                @raves = Rave.all
+            end
         end
 
         def edit
