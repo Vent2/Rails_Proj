@@ -13,14 +13,11 @@
   </thead>
 
   <tbody>
-    <% @raves.each do |rafe| %>
+    <% @raves.each do |r| %>
       <tr>
-        <td><%= rafe.name %></td>
-        <td><%= rafe.price %></td>
-        <td><%= rafe.date %></td>
-        <td><%= link_to 'Show', rafe %></td>
-        <td><%= link_to 'Edit', edit_rafe_path(rafe) %></td>
-        <td><%= link_to 'Destroy', rafe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= r.name %></td>
+        <td><%= r.price %></td>
+        <td><%= r.date %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Rafe', new_rafe_path %>
+<%= link_to 'Main Page', user_path(@user) %>

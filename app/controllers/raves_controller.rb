@@ -2,8 +2,7 @@ class RavesController < ApplicationController
   before_action :set_rave, only: [:show, :edit, :update]
   before_action :set_user
   def index
-     
-      @raves = @user.raves
+     @raves = Rave.all
   end
 
  

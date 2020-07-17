@@ -6,9 +6,8 @@ class User < ApplicationRecord
     validates_uniqueness_of :email
 
     has_many :raves
-    has_many :artists, through: :raves
-    has_many :songs, through: :artists
-
+    has_many :bookings, through: :raves
+    has_many :artists, through: :bookings
 
     def self.find_by_or_create_by_omniauth(auth_hash)
         self.where(:email => auth_hash["info"]["email"]).first_or_create do |user|
