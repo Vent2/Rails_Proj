@@ -1,5 +1,6 @@
 class Artist < ApplicationRecord
-    has_many :bookings
-    has_many :raves, through: :bookings
-
+    has_many :stages
+    has_many :raves, through: :stages
+    accepts_nested_attributes_for :stages 
+    
 end

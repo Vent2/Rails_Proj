@@ -7,20 +7,20 @@ class RavesController < ApplicationController
 
  
   def show
-    
+    @artist = Artist.find_by(id: params[:id])
   end
 
   def new
-    if params[:user_id]
-      
-    end
     @rave = Rave.new
+    # @artist = @rave.artist.build
   end
 
   def create
     @rave = Rave.new(rave_params(:name, :price, :date, :user_id))
     if @rave.save
-      redirect_to rafe_path(@rave)
+      @stage = @rave.stages.build(rave_id: @rave.id)
+        byebug
+        redirect_to rafe_path(@rave)
     else
       render 'new'
     end

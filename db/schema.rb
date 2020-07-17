@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_003852) do
+ActiveRecord::Schema.define(version: 2020_07_17_035331) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2020_07_17_003852) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stages", force: :cascade do |t|
+    t.integer "number"
+    t.integer "rave_id", null: false
+    t.integer "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_stages_on_artist_id"
+    t.index ["rave_id"], name: "index_stages_on_rave_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -50,4 +60,6 @@ ActiveRecord::Schema.define(version: 2020_07_17_003852) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "stages", "artists"
+  add_foreign_key "stages", "raves", column: "rave_id"
 end
