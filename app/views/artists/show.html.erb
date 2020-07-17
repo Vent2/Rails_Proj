@@ -1,2 +1,9 @@
-<h1><%= @artist.name %></h1>
-<h2><%= @stages.number %><h1>
+<h1><%= @artist.name %></h1><br>
+
+<h2>Stage Number:<h2>
+<h3><%= @artist.stages[0][:number] %><h3>
+
+<br><br>
+
+<%= link_to "Back", rafe_path(@rav)%>
+<%= link_to 'Destroy', @artist, method: :delete %>

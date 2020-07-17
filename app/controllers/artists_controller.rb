@@ -1,13 +1,13 @@
 class ArtistsController < ApplicationController
     before_action :set_rave, only: [:new, :create, :show, :edit, :update]
     before_action :set_artists, only: [:show, :edit, :destroy]
-    # before_action :set_user
     def index
         @artists = Artist.all
     end
     
     
     def show
+        @rav = @artist.stages[0][:rave_id]
     end
     
     def new
@@ -37,7 +37,7 @@ class ArtistsController < ApplicationController
     
     def update
         if @artist.update(artists_params)
-        redirect_to @artist
+        redirect_to artist_path(@artist)
         else
         render 'edit'
         end
@@ -55,17 +55,11 @@ class ArtistsController < ApplicationController
         
         end
     
-        # def set_user
-        # @user = User.find_by(id: session[:user_id])
-        # end
         
         def set_artists
            @artist = Artist.find_by(id: params[:id])
         end
 
-        # def rave_params
-        #     params.require(:rave).permit(rave_ids: [])
-        # end
 
         def artists_params(*args)
         params.require(:artist).permit(*args)

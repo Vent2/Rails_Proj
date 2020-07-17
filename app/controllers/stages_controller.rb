@@ -1,22 +1,22 @@
-class StagesController < ApplicationController
-    before_action :set_rave
+# class StagesController < ApplicationController
+#     before_action :set_rave
 
-    def new
+#     def new
 
-    end
+#     end
 
-    def create
+#     def create
         
-    end
+#     end
    
-    def show
+#     def show
     
-    end
+#     end
 
-    private
-    def set_rave
-        @rave = Rave.find(params[:id])
-    end
+#     private
+#     def set_rave
+#         @rave = Rave.find(params[:id])
+#     end
   
     
-end
+# end

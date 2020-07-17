@@ -15,6 +15,11 @@
   <%= @rave.date %>
 </p>
 <br>
+<p>
+  <strong>Artists:</strong>
+  <%= link_to @a.name, artist_path(@a) %>
+</p>
+<br>
 <%= link_to "Add a DJ", new_rafe_artist_path(@rave, @artist) %>
 <br>
 
