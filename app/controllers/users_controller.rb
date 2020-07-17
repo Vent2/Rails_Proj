@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :index, :edit, :update, :destroy]
-    before_action :set_session
-
-    def index
-    end
+    before_action :set_user, :require_login, only: [:show, :edit, :update, :destroy]
+    # before_action :require_login, only: [:show, :edit, :update, :destroy]
 
     def new
         @user = User.new
@@ -22,15 +19,19 @@ class UsersController < ApplicationController
     end
 
         def show
-            if params[:user_id]
-                @user = User.find_by(id: params[:user_id])
-                @raves = @user.raves
-            else
-                @raves = Rave.all
+            if current_user.id != params[:id].to_i 
+                redirect_to user_path(current_user)
             end
+            # byebug
+            @raves =  Rave.all.select{|rave| rave.user_id == @user.id}
+            # else
+            #     @raves = Rave.all
         end
 
         def edit
+            if current_user.id != params[:id].to_i 
+                redirect_to user_path(current_user)
+            end
         end
          
 
@@ -47,13 +48,17 @@ class UsersController < ApplicationController
 
     private
 
-    def set_session
-        session[:user_id]  = @user.id
-    end
-
     def set_user
         @user = User.find_by(id: params[:id])
     end
+
+    def validate_user
+        if current_user.id != params[:id].to_i 
+            redirect_to user_path(current_user)
+        end
+    end
+
+
 
     def user_params(*args)
         params.require(:user).permit(*args)

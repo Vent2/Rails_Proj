@@ -16,5 +16,10 @@
 </p>
 
 <%= link_to 'Main Page', user_path(@user) %>
-<%= link_to 'Edit', edit_rafe_path(@rave) %>
-<%= link_to "Delete", deleteRave_path(@rave) %>
+<%= link_to 'Edit', edit_rafe_path(@rave) %><br>
+
+<%= form_with(model: @rave, method: "delete") do |f| %>
+<%= f.hidden_field :id %>
+<%= f.hidden_field :user_id, value: @user.id %>
+<%= f.submit "Delete" %>
+<% end %>

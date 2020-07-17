@@ -1,4 +1,4 @@
-<%= form_with(model: @rave, url: user_raves_path, local: true) do |f| %>
+<%= form_with(model: @rave, local: true) do |f| %>
   <% if @rave.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rave.errors.count, "error") %> prohibited this Rave from being saved:</h2>
