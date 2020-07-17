@@ -7,8 +7,10 @@ class RavesController < ApplicationController
 
  
   def show
-    # byebug
+    if @rave.stages.any?
     @a = Artist.find_by(id: @rave.stages[0][:artist_id])
+    end
+    render 'show'
   end
 
   def new
