@@ -1,6 +1,5 @@
 <div>
   <%= form_with(model: @user, local: true) do |form| %>
-  <%# <%= byebug %>
     <%= render 'users/form' %><br>
     <%= form.submit "Sign In" %>
   <% end %>

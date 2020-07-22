@@ -3,6 +3,7 @@ class RavesController < ApplicationController
   before_action :set_user
   def index
      @raves = Rave.all
+    #  @rav = @raves.cheap
   end
 
  
@@ -41,11 +42,11 @@ class RavesController < ApplicationController
     end
   end
 
-  def destroy
-    @rave =  Rave.find(params[:id])
-    @rave.delete
-    redirect_to user_path(@user)
-  end
+  # def destroy
+  #   @rave =  Rave.find(params[:id])
+  #   @rave.delete
+  #   redirect_to user_path(@user)
+  # end
 
   private
     def set_rave

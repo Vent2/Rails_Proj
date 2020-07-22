@@ -43,11 +43,11 @@ class ArtistsController < ApplicationController
         end
     end
     
-    def destroy
-        @artist =  Artist.find(params[:id])
-        @artist.delete
-        redirect_to rafe_path(@rave)
-    end
+    # def destroy
+    #     @artist =  Artist.find(params[:id])
+    #     @artist.delete
+    #     redirect_to rafe_path(@rave)
+    # end
     
     private
         def set_rave
