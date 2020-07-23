@@ -2,9 +2,16 @@ class ArtistsController < ApplicationController
     before_action :set_rave, only: [:new, :create, :show, :edit, :update]
     before_action :set_artists, only: [:show, :edit, :destroy]
     def index
-        @artists = Artist.all
+        if params[:artist]
+            # @artists = Artist.all.select{ |artist| artist.name == params[:artist]}
+            @artists = Artist.search(params[:artist])
+        else    
+            @artists = Artist.all
+        end
     end
-    
+    def search
+        
+    end    
     
     def show
         @rav = @artist.stages[0][:rave_id]
@@ -30,6 +37,7 @@ class ArtistsController < ApplicationController
         render 'new'
         end
     end
+
     
     def edit
         

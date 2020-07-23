@@ -3,6 +3,7 @@ class RavesController < ApplicationController
   before_action :set_user
   def index
      @raves = Rave.all
+    #  binding.pry
     #  @rav = @raves.cheap
   end
 
